@@ -1,15 +1,15 @@
 require 'spec_helper'
 require 'omniauth-linkedin-jsapi'
 
-describe OmniAuth::Strategies::LinkedIn do
+describe OmniAuth::Strategies::LinkedInJS do
 
   # Initialize with fake api_key and secret_key
   subject {
-    OmniAuth::Strategies::LinkedIn.new(nil, '67xrcd1q4dijzn', 'X19zkd7LdmSPVcrV')
+    OmniAuth::Strategies::LinkedInJS.new(nil, '67xrcd1q4dijzn', 'X19zkd7LdmSPVcrV')
   }
 
   it 'adds a camelization for itself' do
-    expect(OmniAuth::Utils.camelize('linkedin')).to eq 'LinkedIn'
+    expect(OmniAuth::Utils.camelize('linkedin_js')).to eq 'LinkedInJS'
   end
 
   describe '#client' do

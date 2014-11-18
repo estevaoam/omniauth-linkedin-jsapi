@@ -6,9 +6,9 @@ require 'multi_json'
 
 module OmniAuth
   module Strategies
-    # Authentication strategy for connecting by [exchanging LinkedIn JSAPI for REST API 
+    # Authentication strategy for connecting by [exchanging LinkedIn JSAPI for REST API
     # OAuth Tokens](http://developer.linkedin.com/documents/exchange-jsapi-tokens-rest-api-oauth-tokens).
-    class LinkedIn
+    class LinkedInJS
       include OmniAuth::Strategy
       class NoSecureCookieError < StandardError; end
       class InvalidSecureCookieError < StandardError; end
@@ -16,7 +16,7 @@ module OmniAuth
 
       args [:api_key, :secret_key]
 
-      option :name, 'linkedin'
+      option :name, 'linkedin_js'
 
       option :api_key, nil
       option :secret_key, nil
@@ -51,7 +51,7 @@ module OmniAuth
 
       credentials do
         {
-          :token  => access_token.token, 
+          :token  => access_token.token,
           :secret => access_token.secret
         }
       end
@@ -94,9 +94,9 @@ module OmniAuth
         fail!(:service_unavailable, e)
       end
 
-      def callback_phase 
+      def callback_phase
         if request_contains_secure_cookie?
-          # We should already have an oauth2 token from secure cookie. 
+          # We should already have an oauth2 token from secure cookie.
           # Need to exchange it for an oauth token for REST API
           self.access_token = client.get_access_token(nil, {}, {:xoauth_oauth2_access_token => secure_cookie['access_token']})
           super
@@ -171,4 +171,5 @@ module OmniAuth
 
   end
 end
-OmniAuth.config.add_camelization 'linkedin', 'LinkedIn'
+
+OmniAuth.config.add_camelization 'linkedin_js', 'LinkedInJS'

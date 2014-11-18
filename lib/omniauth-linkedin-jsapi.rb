@@ -1,2 +1,2 @@
 require "omniauth-linkedin-jsapi/version"
-require "omniauth/strategies/linkedin"
+require "omniauth/strategies/linkedin_js"
